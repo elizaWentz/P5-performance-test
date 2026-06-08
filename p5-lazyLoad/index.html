@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>p5 Sketch Carousel</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <main class="page">
+    <header class="topbar">
+      <h1>p5 Sketches</h1>
+    </header>
+
+    <section class="carousel">
+      <div class="sketch-stage">
+        <iframe
+          id="sketch-frame"
+          title="Current p5 sketch"
+        ></iframe>
+      </div>
+
+      <div class="controls">
+        <button id="prev" class="nav-button" type="button">
+          Vorige
+        </button>
+
+        <button id="next" class="nav-button" type="button">
+          Volgende
+        </button>
+      </div>
+
+      <p id="counter"></p>
+    </section>
+
+    <section class="sketch-grid" aria-label="p5 sketch grid">
+      <div id="grid-container"></div>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>
