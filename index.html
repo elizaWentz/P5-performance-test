@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta
@@ -7,13 +7,166 @@
     content="width=device-width, initial-scale=1.0"
   >
   <title>2 opties voor optimale score responsiveness</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+    }
+
+    .page {
+      width: min(1040px, calc(100vw - 32px));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 56px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .intro {
+      max-width: 760px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(36px, 7vw, 72px);
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .intro p {
+      max-width: 620px;
+      margin: 0;
+      color: #ccc;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .option-link {
+      min-height: 220px;
+      padding: 24px;
+      border: 1px solid #444;
+      color: white;
+      text-decoration: none;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition:
+        border-color 160ms ease,
+        background 160ms ease,
+        color 160ms ease;
+    }
+
+    .option-link:hover,
+    .option-link:focus-visible {
+      border-color: white;
+      background: white;
+      color: black;
+      outline: 0;
+    }
+
+    .option-link span {
+      color: #999;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .option-link:hover span,
+    .option-link:focus-visible span {
+      color: #333;
+    }
+
+    .option-link strong {
+      margin-top: 40px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .option-link p {
+      margin: 18px 0 0;
+      color: #ccc;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .option-link:hover p,
+    .option-link:focus-visible p {
+      color: #333;
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 40px 0;
+        justify-content: flex-start;
+      }
+
+      .option-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .option-link {
+        min-height: 180px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>2 opties voor optimale score responsiveness</h1>
+  <main class="page">
+    <header class="intro">
+      <h1>2 opties voor optimale score responsiveness</h1>
+      <p>
+        Vergelijk twee manieren om p5 sketches responsive te tonen en kies de
+        aanpak die het beste past bij de performance-test.
+      </p>
+    </header>
 
-  <ul>
-    <li><a href="./p5-lazyLoad/">Open Project A</a></li>
-    <li><a href="./p5-scalePerimeter/">Open Project B</a></li>
-  </ul>
+    <ul class="option-grid" aria-label="Responsive p5 opties">
+      <li>
+        <a class="option-link" href="./p5-scalePerimeter/">
+          <span>Optie 01</span>
+          <div>
+            <strong>Scale perimeter</strong>
+            <p>
+              Bekijk de sketches in een viewer die schaalt op basis van de
+              beschikbare ruimte.
+            </p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="option-link" href="./p5-lazyLoad/">
+          <span>Optie 02</span>
+          <div>
+            <strong>Lazyload in grid</strong>
+            <p>
+              Laad meerdere sketches in een grid en beperk wat tegelijk actief
+              wordt geladen.
+            </p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </main>
 </body>
 </html>
