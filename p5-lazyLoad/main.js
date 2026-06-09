@@ -41,7 +41,7 @@ const sketches = [
   "sketches/29-sketch43.js",
   "sketches/30-responsible-it-47.js",
   "sketches/31-responsible-it-48.js",
-  "sketches/new-wcag.js",
+  "sketches/new-wcag1.js",
   "sketches/new-wcag2.js",
   "sketches/new-wcag3.js",
   "sketches/new-wcag4.js",
@@ -53,6 +53,7 @@ const sketches = [
   "sketches/new-wcag10.js",
   "sketches/new-wcag12.js",
   "sketches/new-wcag11.js",
+  "sketches/new-wcag13.js",
   "sketches/new-wcag8.js",
   "sketches/32-responsible-it-42.js"
 ];
