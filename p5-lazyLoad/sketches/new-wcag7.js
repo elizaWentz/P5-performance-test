@@ -2,7 +2,7 @@ function setup() {
   createCanvas(1920, 1080);
   randomSeed(42); // Ensure reproducibility
   noLoop(); // Static composition
-  background('#E8D4A7'); // Licht crème background
+  background('#E3D39B'); // Licht crèmegeel background
   drawTileGrid();
   addWallTexture();
 }
@@ -40,7 +40,7 @@ function drawRectangleTile(x, y, w, h) {
   rotate(random([0, HALF_PI, PI, PI + HALF_PI])); // Random rotation
   fill(randomColor());
   strokeWeight(2);
-  stroke('#2F3C3A'); // Donker groen-grijs outline
+  stroke('#4A2E2A'); // Donker warmbruin outline
   rectMode(CENTER);
   rect(0, 0, w, h);
   pop();
@@ -52,7 +52,7 @@ function drawTriangleTile(x, y, w, h) {
   translate(x, y);
   fill(randomColor());
   strokeWeight(2);
-  stroke('#2F3C3A'); // Donker groen-grijs outline
+  stroke('#4A2E2A'); // Donker warmbruin outline
   const orientation = floor(random(4));
   beginShape();
   if (orientation === 0) {
@@ -94,11 +94,14 @@ function addWallTexture() {
 // Generate a random color from the specified palette
 function randomColor() {
   const palette = [
-    color('#D9B679'), // Warm beige
-    color('#C28A34'), // Oker / mosterd
-    color('#B85B25'), // Gebrand oranje
-    color('#2F3C3A'), // Donker groen-grijs
-    color('#8D9189')  // Gedempt blauwgrijs
+    color('#111216'), // Diep zwart
+    color('#6E262A'), // Donker bordeaux
+    color('#9B3E24'), // Gebrand rood/oranje
+    color('#C48A3A'), // Oker / goudgeel
+    color('#5E6641'), // Olijfgroen
+    color('#6C777A'), // Blauwgrijs
+    color('#4A2E2A'), // Donker warmbruin
+    color('#E3D39B')  // Licht crèmegeel
   ];
   return random(palette);
 }
