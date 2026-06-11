@@ -1,4 +1,7 @@
 const sketches = [
+  "sketches/04-sketch7.js",
+  "sketches/10-sketch3.js",
+  "sketches/08-responsible-it-15.js",
   "sketches/01-sketch41.js",
   "sketches/02-favoriet-50.js",
   "sketches/02-favoriet-50-kleur2.js",
@@ -6,17 +9,14 @@ const sketches = [
   "sketches/03-favoriet-50-variatie2.js",
   "sketches/03-favoriet-50-variatie2-kleur2.js",
   "sketches/03-favoriet-50-variatie3.js",
-  "sketches/04-sketch7.js",
   "sketches/05-favoriet-HvA1.js",
   "sketches/05-favoriet-HvA1-kleur2.js",
   "sketches/05-favoriet-HvA1-kleur3.js",
   "sketches/05-favoriet-HvA1-kleur4.js",
   "sketches/06-sketch39.js",
   "sketches/07-favoriet-44.js",
-  "sketches/08-responsible-it-15.js",
   "sketches/08-responsible-it-15-variatie2.js",
   "sketches/09-favoriet-52.js",
-  "sketches/10-sketch3.js",
   "sketches/11-favoriet-38.js",
   "sketches/12-sketch46.js",
   "sketches/13-favoriet-49.js",
@@ -77,6 +77,32 @@ const counter = document.getElementById("counter");
 const prevButton = document.getElementById("prev");
 const nextButton = document.getElementById("next");
 const gridContainer = document.getElementById("grid-container");
+const MAX_LIVE_GRID_PREVIEWS = 6;
+const INITIAL_GRID_PREVIEWS = 3;
+const liveGridPreviews = [];
+
+function loadGridPreview(item) {
+  if (item.querySelector("iframe")) {
+    return;
+  }
+
+  const iframe = document.createElement("iframe");
+  iframe.title = item.dataset.title;
+  iframe.src = item.dataset.src;
+  iframe.loading = "lazy";
+
+  item.appendChild(iframe);
+  liveGridPreviews.push(item);
+
+  while (liveGridPreviews.length > MAX_LIVE_GRID_PREVIEWS) {
+    const oldestItem = liveGridPreviews.shift();
+    const oldIframe = oldestItem.querySelector("iframe");
+
+    if (oldIframe) {
+      oldIframe.remove();
+    }
+  }
+}
 
 const gridPreviewObserver = new IntersectionObserver(function (entries, observer) {
   entries.forEach(function (entry) {
@@ -84,12 +110,7 @@ const gridPreviewObserver = new IntersectionObserver(function (entries, observer
       return;
     }
 
-    const iframe = entry.target.querySelector("iframe");
-
-    if (iframe && !iframe.src) {
-      iframe.src = iframe.dataset.src;
-    }
-
+    loadGridPreview(entry.target);
     observer.unobserve(entry.target);
   });
 }, {
@@ -104,6 +125,22 @@ function showSketch() {
   counter.textContent = `${currentIndex + 1} / ${sketches.length}`;
 }
 
+function loadInitialGridPreviews() {
+  document.querySelectorAll(".grid-item").forEach(function (item, index) {
+    if (index < INITIAL_GRID_PREVIEWS) {
+      loadGridPreview(item);
+    }
+  });
+}
+
+function startGridPreviewObserver() {
+  document.querySelectorAll(".grid-item").forEach(function (item, index) {
+    if (index >= INITIAL_GRID_PREVIEWS) {
+      gridPreviewObserver.observe(item);
+    }
+  });
+}
+
 function createGrid() {
   sketches.forEach(function (sketchPath, index) {
     const item = document.createElement("button");
@@ -111,12 +148,8 @@ function createGrid() {
     item.type = "button";
     item.setAttribute("aria-label", `Open sketch ${index + 1}`);
 
-    const iframe = document.createElement("iframe");
-    iframe.title = `Sketch ${index + 1}`;
-    iframe.dataset.src = `viewer.html?sketch=${encodeURIComponent(sketchPath)}&preview=true`;
-    iframe.loading = "lazy";
- 
-    item.appendChild(iframe);
+    item.dataset.title = `Sketch ${index + 1}`;
+    item.dataset.src = `viewer.html?sketch=${encodeURIComponent(sketchPath)}&preview=true`;
 
     item.addEventListener("click", function () {
       currentIndex = index;
@@ -125,7 +158,6 @@ function createGrid() {
     });
 
     gridContainer.appendChild(item);
-    gridPreviewObserver.observe(item);
   });
 }
 
@@ -151,3 +183,19 @@ prevButton.addEventListener("click", function () {
 
 createGrid();
 showSketch();
+loadInitialGridPreviews();
+
+let gridPreviewObserverStarted = false;
+
+function startGridPreviewObserverOnce() {
+  if (gridPreviewObserverStarted) {
+    return;
+  }
+
+  gridPreviewObserverStarted = true;
+  startGridPreviewObserver();
+}
+
+window.addEventListener("scroll", startGridPreviewObserverOnce, { once: true, passive: true });
+window.addEventListener("wheel", startGridPreviewObserverOnce, { once: true, passive: true });
+window.addEventListener("touchstart", startGridPreviewObserverOnce, { once: true, passive: true });
