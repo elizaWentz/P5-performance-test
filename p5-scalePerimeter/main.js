@@ -89,8 +89,21 @@ const sketches = [
   "sketches/new-wcag14.js",
   "sketches/new2.js",
   "sketches/new3.js",
-   "sketches/new6.js",
-  "sketches/32-responsible-it-42.js"
+  "sketches/new6.js",
+  "sketches/32-responsible-it-42.js",
+  "sketches/sketch copy 2.js",
+  "sketches/sketch copy 3.js",
+  "sketches/sketch copy 4.js",
+  "sketches/sketch copy 5.js",
+  "sketches/sketch copy 6.js",
+  "sketches/sketch copy 7.js",
+  "sketches/sketch copy 8.js",
+  "sketches/sketch copy 9.js",
+  "sketches/sketch copy 10.js",
+  "sketches/sketch copy 11.js",
+  "sketches/sketch copy 12.js",
+  "sketches/sketch copy 13.js",
+  "sketches/sketch-hva-ps4.js",
 ];
 
 

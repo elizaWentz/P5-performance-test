@@ -9,6 +9,7 @@ const sketches = [
   "sketches/03-favoriet-50-variatie2.js",
   "sketches/03-favoriet-50-variatie2-kleur2.js",
   "sketches/03-favoriet-50-variatie3.js",
+  "sketches/03-favoriet-50-variatie4.js",
   "sketches/05-favoriet-HvA1.js",
   "sketches/05-favoriet-HvA1-kleur2.js",
   "sketches/05-favoriet-HvA1-kleur3.js",
