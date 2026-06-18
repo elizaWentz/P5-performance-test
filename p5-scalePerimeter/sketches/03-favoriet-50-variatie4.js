@@ -14,7 +14,7 @@ function draw() {
   const rh = H / 10;
 
   const red = "#1C3147";
-  const deepRed = "#D64D0F";
+  const deepRed = "#e85a12";
   const darkRed = "#8E9374";
   const orange = "#4F3023";
   const yellow = "#EBD9AB";
