@@ -99,9 +99,7 @@ const counter = document.getElementById("counter");
 const prevButton = document.getElementById("prev");
 const nextButton = document.getElementById("next");
 const gridContainer = document.getElementById("grid-container");
-const MAX_LIVE_GRID_PREVIEWS = 6;
 const INITIAL_GRID_PREVIEWS = 3;
-const liveGridPreviews = [];
 
 function loadGridPreview(item) {
   if (item.querySelector("iframe")) {
@@ -114,16 +112,6 @@ function loadGridPreview(item) {
   iframe.loading = "lazy";
 
   item.appendChild(iframe);
-  liveGridPreviews.push(item);
-
-  while (liveGridPreviews.length > MAX_LIVE_GRID_PREVIEWS) {
-    const oldestItem = liveGridPreviews.shift();
-    const oldIframe = oldestItem.querySelector("iframe");
-
-    if (oldIframe) {
-      oldIframe.remove();
-    }
-  }
 }
 
 const gridPreviewObserver = new IntersectionObserver(function (entries, observer) {
@@ -136,7 +124,7 @@ const gridPreviewObserver = new IntersectionObserver(function (entries, observer
     observer.unobserve(entry.target);
   });
 }, {
-  rootMargin: "0px 0px",
+  rootMargin: "600px 0px",
   threshold: 0.01
 });
 
