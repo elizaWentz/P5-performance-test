@@ -49,6 +49,11 @@ function setup() {
   buildBaseCanopy();
   buildAtmosphere();
   buildSunlight();
+  const btn = createButton('Download PNG');
+  btn.position(10, 10);
+  btn.mousePressed(() => {
+    saveCanvas('15-sketch-53.js', 'png');
+  });
 }
 
 function draw() {
