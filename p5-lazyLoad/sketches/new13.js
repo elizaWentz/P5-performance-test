@@ -1,25 +1,26 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Warm Nested Rectangles – p5.js static artwork  |  1920 × 1080 px
-// Light in the center, darker on the outside.
+// Dark in the center, lighter on the outside.
 // ─────────────────────────────────────────────────────────────────────────────
 
+// ── Palette: pale cream (outer) → amber → burnt orange → dark red (inner) ───
 const DEPTH_COLORS = [
-  [238, 235, 205],  // 0  near-white cream-green   (innermost)
-  [220, 218, 170],  // 1  very pale green-cream
-  [200, 198, 140],  // 2  pale yellow-green
-  [178, 175, 105],  // 3  light olive-yellow
-  [155, 155,  80],  // 4  pale olive
-  [130, 135,  62],  // 5  yellow-olive
-  [108, 118,  48],  // 6  olive
-  [ 88, 105,  38],  // 7  warm olive
-  [ 70,  90,  32],  // 8  muted green
-  [ 55,  78,  28],  // 9  olive-green
-  [ 42,  68,  25],  // 10 medium forest green
-  [ 32,  58,  22],  // 11 forest green
-  [ 25,  48,  20],  // 12 deep green
-  [ 20,  38,  18],  // 13 dark forest green
-  [ 15,  30,  16],  // 14 very dark green
-  [ 10,  22,  12],  // 15 near-black forest green  (outermost)
+  [250, 220, 160],  // 0  pale cream-yellow    (outermost)
+  [245, 205, 135],  // 1  warm sand
+  [242, 190, 110],  // 2  light amber
+  [238, 175,  85],  // 3  amber
+  [232, 158,  65],  // 4  amber-orange
+  [225, 138,  50],  // 5  orange
+  [218, 118,  42],  // 6  deep orange
+  [210,  98,  38],  // 7  burnt orange
+  [200,  80,  35],  // 8  burnt orange-red
+  [188,  62,  32],  // 9  orange-red
+  [175,  48,  30],  // 10 red-orange
+  [162,  38,  28],  // 11 medium red
+  [150,  30,  26],  // 12 red
+  [138,  24,  24],  // 13 deep red
+  [125,  20,  22],  // 14 dark red
+  [112,  16,  20],  // 15 very dark red        (innermost)
 ];
 
 const CANVAS_W = 1920;
@@ -52,7 +53,7 @@ function setup() {
 
 // ─────────────────────────────────────────────────────────────────────────────
 function draw() {
-  background(238, 235, 205); // fallback = outermost (darkest) color
+  background(250, 220, 160); // fallback = outermost (lightest) color
   drawNestedRectangles();
 }
 
